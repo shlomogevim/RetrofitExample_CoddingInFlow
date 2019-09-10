@@ -41,4 +41,24 @@ interface JsonPlaceHolderApi {
 
     @GET
     fun getPosts7(@Url url:String):Call<Post>
+
+
+    @POST("posts")
+    fun creatPost1(@Body post: Post
+    ): Call<Post>? = null
+
+    @FormUrlEncoded                 //Just another way to post
+    @POST("posts")
+    fun creatPost2(
+        @Field ("userId") userId:Int,
+        @Field("title") title:String,
+        @Field("body") text:String
+    ): Call<Post>? = null
+
+    @FormUrlEncoded                 //Just another way to post
+    @POST("posts")
+    fun creatPost3(
+        @FieldMap filds:Map<String,String>
+    ): Call<Post>? = null
 }
+
