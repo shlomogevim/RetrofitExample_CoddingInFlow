@@ -1,9 +1,44 @@
 package com.example.retrofitexample_coddinginflow
 
 import retrofit2.Call
-import retrofit2.http.GET
+import retrofit2.http.*
 
 interface JsonPlaceHolderApi {
+
+
+    @GET("posts") //          /postsa
+    fun getPosts1():Call<List<Post>>
+
+    @GET("posts/{userId}") //          /posts/1
+    fun getPosts2(@Path("userId") userId:Int):Call<Post>
+
+
+    @GET("posts")                   // /post?userId=1
+    fun getPosts3(@Query("userId") userId: Int): Call<List<Post>>
+
+    @GET("posts")                   // /post?userId=1&7
+    fun getPosts30(@Query("userId") userId1: Int,
+                   @Query("userId") userId2: Int): Call<List<Post>>
+
     @GET("posts")
-    fun getPosts():Call<List<Post>>
+    fun getPosts4(
+        @Query("userId") userId: Int?=null,
+        @Query("_sort") sort: String? = null,
+        @Query("_order") order: String? = null
+    ): Call<List<Post>>? = null
+
+    @GET("posts")
+    fun getPosts5(
+        @Query("userId") userId: List<Int>,
+        @Query("_sort") sort: String? = null,
+        @Query("_order") order: String? = null
+    ): Call<List<Post>>? = null
+
+    @GET("posts")
+    fun getPosts6(@QueryMap parameters: Map<String, String>
+    ): Call<List<Post>>? = null
+
+
+    @GET
+    fun getPosts7(@Url url:String):Call<Post>
 }
