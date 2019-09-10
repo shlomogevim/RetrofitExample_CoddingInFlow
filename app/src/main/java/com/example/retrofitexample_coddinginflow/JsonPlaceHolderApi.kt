@@ -34,10 +34,31 @@ interface JsonPlaceHolderApi {
         @Query("_order") order: String? = null
     ): Call<List<Post>>? = null
 
+
     @GET("posts")
     fun getPosts6(@QueryMap parameters: Map<String, String>
     ): Call<List<Post>>? = null
 
+    @Headers("Static-Header1: 123")
+    @GET("posts")
+    fun getPosts60(
+        @Header("Dynamic-Header") hrader :String,
+        @QueryMap parameters: Map<String, String>
+    ): Call<List<Post>>? = null
+
+
+    @Headers("Static-Header1: 123")
+    @GET("posts")
+    fun getPosts61(
+        @HeaderMap  header :Map<String,String>,
+        @QueryMap parameters: Map<String, String>
+    ): Call<List<Post>>? = null
+
+    @GET("posts")
+    fun getPosts62(
+        @HeaderMap  header: Map<String,String>,
+        @QueryMap parameters: Map<String, String>
+    ): Call<List<Post>>? = null
 
     @GET
     fun getPosts7(@Url url:String):Call<Post>
@@ -45,6 +66,14 @@ interface JsonPlaceHolderApi {
 
     @POST("posts")
     fun creatPost1(@Body post: Post
+    ): Call<Post>? = null
+
+
+    @Headers("Static-Header1: 123")
+    @POST("posts")
+    fun creatPost10(
+        @Header("Dynamic-Header") hrader :String,
+        @Body post: Post
     ): Call<Post>? = null
 
     @FormUrlEncoded                 //Just another way to post
